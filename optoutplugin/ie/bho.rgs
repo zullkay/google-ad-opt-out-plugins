@@ -1,0 +1,38 @@
+HKCR {
+  opt_out.PersistentOptOutBHO.1 = s 'PersistentOptOutBHO Class' {
+    CLSID = s '{8E425EB4-ADBD-4816-B1E8-49BB9DECF034}'
+  }
+  opt_out.PersistentOptOutBHO = s 'PersistentOptOutBHO Class' {
+    CLSID = s '{8E425EB4-ADBD-4816-B1E8-49BB9DECF034}'
+    CurVer = s 'opt_out.PersistentOptOutBHO.1'
+  }
+  NoRemove CLSID {
+    ForceRemove {8E425EB4-ADBD-4816-B1E8-49BB9DECF034} = s 'Adverstising Cookie Opt-out' {
+      ProgID = s 'opt_out.PersistentOptOutBHO.1'
+      VersionIndependentProgID = s 'opt_out.PersistentOptOutBHO'
+      ForceRemove 'Programmable'
+      InprocServer32 = s '%MODULE%' {
+        val ThreadingModel = s 'Apartment'
+      }
+      'TypeLib' = s '{F240BFEF-88DD-4F6D-9816-D32E509B929B}'
+    }
+  }
+}
+
+HKLM {
+  NoRemove SOFTWARE {
+    NoRemove Microsoft {
+      NoRemove Windows {
+        NoRemove CurrentVersion {
+          NoRemove Explorer {
+            NoRemove 'Browser Helper Objects' {
+              ForceRemove '{8E425EB4-ADBD-4816-B1E8-49BB9DECF034}' = s 'Adverstising Cookie Opt-out' {
+                val 'NoExplorer' = d '1'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
