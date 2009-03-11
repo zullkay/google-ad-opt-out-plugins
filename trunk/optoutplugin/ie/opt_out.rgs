@@ -1,0 +1,8 @@
+HKCR {
+  NoRemove AppID {
+    '%APPID%' = s 'opt_out'
+    'opt_out.dll' {
+      val AppID = s '%APPID%'
+    }
+  }
+}

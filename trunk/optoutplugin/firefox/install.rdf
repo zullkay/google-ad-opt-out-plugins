@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>optout@google.com</em:id>
+    <em:version>1.0</em:version>
+    <em:type>2</em:type>
+    <!-- Target Application this extension can install into,
+         with minimum and maximum supported versions. -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+        <em:minVersion>1.5</em:minVersion>
+        <em:maxVersion>3.0.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+    <!-- Front End MetaData -->
+    <em:name>Advertising Cookie Opt-out</em:name>
+    <em:description>Save your opt-out preference permanently.</em:description>
+    <em:iconURL>chrome://optout/content/google.png</em:iconURL>
+    <em:creator>Google Inc.</em:creator>
+    <em:contributor>Valentin Gheorghita</em:contributor>
+    <em:homepageURL>http://www.google.com/ads/preferences/plugin/opt-out.html</em:homepageURL>
+    <em:updateURL>https://dl-ssl.google.com/optoutplugin/google-optout-plugin-update.rdf</em:updateURL>
+    <em:localized>
+      <Description>
+        <em:locale>de</em:locale>
+        <em:name>Deaktivieren des Cookies für Anzeigenvorgaben</em:name>
+        <em:description>Dauerhaftes Deaktivieren des DoubleClick-Cookies. Dieses Cookie wird von Google als Cookie für Anzeigenvorgaben verwendet.</em:description>
+      </Description>
+      <Description>
+        <em:locale>da</em:locale>
+        <em:name>Fravalg af annonceringscookie</em:name>
+        <em:description>Permanent fravalg af DoubleClick-cookien, der er en annonceringscookie, Google bruger.</em:description>
+      </Description>
+      <Description>
+        <em:locale>it</em:locale>
+        <em:name>Disattivazione del cookie per la pubblicità</em:name>
+        <em:description>Disattiva in modo permanente il cookie DoubleClick, un cookie per la pubblicità utilizzato da Google.</em:description>
+      </Description>
+      <Description>
+        <em:locale>no</em:locale>
+        <em:name>Bortvalg av informasjonskapsel for annonsering</em:name>
+        <em:description>Velg bort DoubleClick-informasjonskapselen, som er en informasjonskapsel for annonsering som Google bruker, permanent.</em:description>
+      </Description>
+      <Description>
+        <em:locale>fi</em:locale>
+        <em:name>Mainosevästeen käytöstäpoisto</em:name>
+        <em:description>Poista pysyvästi DoubleClick-eväste, joka on Googlen käyttämä mainoseväste.</em:description>
+      </Description>
+      <Description>
+        <em:locale>fr</em:locale>
+        <em:name>Désactivation du cookie publicitaire</em:name>
+        <em:description>Désactive de façon permanente le cookie DoubleClick, qui est un cookie publicitaire utilisé par Google.</em:description>
+      </Description>
+      <Description>
+        <em:locale>sv</em:locale>
+        <em:name>Välja bort annonscookies</em:name>
+        <em:description>Välj permanent bort DoubleClick-cookien, som är en annonscookie som Google använder.</em:description>
+      </Description>
+      <Description>
+        <em:locale>es</em:locale>
+        <em:name>Inhabilitación de cookies de publicidad</em:name>
+        <em:description>Inhabilite la cookie de DoubleClick de forma permanente. Se trata de una cookie de publicidad utilizada por Google.</em:description>
+      </Description>
+      <Description>
+        <em:locale>nl</em:locale>
+        <em:name>Afmelden voor advertentiecookie</em:name>
+        <em:description>Permanent afmelden voor de DoubleClick-cookie. Dit is een advertentiecookie die door Google wordt gebruikt.</em:description>
+      </Description>
+    <em:localized>
+  </Description>
+</RDF>
