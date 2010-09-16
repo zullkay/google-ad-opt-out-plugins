@@ -1,0 +1,14 @@
+{
+  "name": "IBA Opt-out (by Google)",
+  "version": "1.0",
+  "description": "Save your interest-based advertising opt-out preference permanently.",
+  "icons": { "16": "icon16.png",
+             "32": "icon32.png",
+             "48": "icon48.png",
+             "128": "icon128.png" },
+  "background_page": "background.html",
+  "minimum_chrome_version": "6.0.433.0",
+  "permissions": [
+    "http://doubleclick.net/"
+  ]
+}
