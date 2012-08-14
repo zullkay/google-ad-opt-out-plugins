@@ -15,30 +15,36 @@
  */
 
 var DOUBLECLICK_DOMAIN = 'doubleclick.net';
-var DOUBLECLICK_URL = 'http://' + DOUBLECLICK_DOMAIN + '/';
+var DOUBLECLICK_URL = 'http://' + DOUBLECLICK_DOMAIN;
 
 /**
  * Set opt out cookie.
+ *
+ * @param {string} store_id The cookie store the cookie should be stored in.
  */
 function optOut(store_id) {
-  chrome.experimental.cookies.set({name: "id",
-                                   value: "OPT_OUT", 
-                                   domain: "." + DOUBLECLICK_DOMAIN,
-                                   url: DOUBLECLICK_URL,
-                                   expirationDate : 1920499146,
-                                   storeId: store_id});
+  chrome.cookies.set({name: 'id',
+                      value: 'OPT_OUT',
+                      domain: '.' + DOUBLECLICK_DOMAIN,
+                      url: DOUBLECLICK_URL,
+                      expirationDate: 1920499146,
+                      storeId: store_id});
 }
 
 /**
  * Clear all cookies set for the domain doubleclick.net.
+ *
+ * @param {string} store_id The cookie store from which the cookies should be
+ *                          removed.
  */
 function clearCookies(store_id) {
-  chrome.experimental.cookies.getAll({domain: "." + DOUBLECLICK_DOMAIN},
+  chrome.cookies.getAll({domain: DOUBLECLICK_DOMAIN,
+                         storeId: store_id},
       function(cookies) {
         for (var i = 0; i < cookies.length; i++) {
-          chrome.experimental.cookies.remove({url: DOUBLECLICK_URL,
-                                              name: cookies[i].name,
-                                              storeId: store_id});
+          chrome.cookies.remove({url: DOUBLECLICK_URL + cookies[i].path,
+                                 name: cookies[i].name,
+                                 storeId: store_id});
         }
       }
   );
@@ -46,19 +52,21 @@ function clearCookies(store_id) {
 
 /**
  * Listener for cookies.onChanged.
+ *
+ * @param evt {object} information about the cookie that was changed.
  */
 function onCookieChanged(evt) {
   if (evt.removed &&
-      evt.cookie.domain == "." + DOUBLECLICK_DOMAIN &&
-      evt.cookie.name == "id") {
+      evt.cookie.domain == '.' + DOUBLECLICK_DOMAIN &&
+      evt.cookie.name == 'id') {
     optOut(evt.cookie.storeId);
   }
 }
 
-chrome.experimental.cookies.getAllCookieStores(function(cookie_stores) {
+chrome.cookies.getAllCookieStores(function(cookie_stores) {
   for (var i = 0; i < cookie_stores.length; i++) {
     clearCookies(cookie_stores[i].id);
     optOut(cookie_stores[i].id);
   }
 });
-chrome.experimental.cookies.onChanged.addListener(onCookieChanged);
+chrome.cookies.onChanged.addListener(onCookieChanged);
