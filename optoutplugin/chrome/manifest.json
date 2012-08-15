@@ -1,6 +1,6 @@
 {
   "name": "IBA Opt-out (by Google)",
-  "version": "1.2",
+  "version": "1.3",
   "description": "Save your interest-based advertising opt-out preference permanently.",
   "manifest_version": 2,
   "icons": { "16": "icon16.png",
