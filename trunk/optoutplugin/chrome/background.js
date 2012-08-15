@@ -57,6 +57,7 @@ function clearCookies(store_id) {
  */
 function onCookieChanged(evt) {
   if (evt.removed &&
+      evt.cause != 'explicit' &&
       evt.cookie.domain == '.' + DOUBLECLICK_DOMAIN &&
       evt.cookie.name == 'id') {
     optOut(evt.cookie.storeId);
