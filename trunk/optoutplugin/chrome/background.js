@@ -23,12 +23,18 @@ var DOUBLECLICK_URL = 'http://' + DOUBLECLICK_DOMAIN;
  * @param {string} store_id The cookie store the cookie should be stored in.
  */
 function optOut(store_id) {
-  chrome.cookies.set({name: 'id',
-                      value: 'OPT_OUT',
-                      domain: '.' + DOUBLECLICK_DOMAIN,
+  chrome.cookies.get({name: 'id',
                       url: DOUBLECLICK_URL,
-                      expirationDate: 1920499146,
-                      storeId: store_id});
+                      storeId: store_id}, function(cookie) {
+    if (!cookie || cookie.value != 'OPT_OUT') {
+      chrome.cookies.set({name: 'id',
+                          value: 'OPT_OUT',
+                          domain: '.' + DOUBLECLICK_DOMAIN,
+                          url: DOUBLECLICK_URL,
+                          expirationDate: 1920499146,
+                          storeId: store_id});
+    }
+  });
 }
 
 /**
@@ -57,7 +63,6 @@ function clearCookies(store_id) {
  */
 function onCookieChanged(evt) {
   if (evt.removed &&
-      evt.cause != 'explicit' &&
       evt.cookie.domain == '.' + DOUBLECLICK_DOMAIN &&
       evt.cookie.name == 'id') {
     optOut(evt.cookie.storeId);
