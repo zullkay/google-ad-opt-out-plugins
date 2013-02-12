@@ -15,6 +15,7 @@
 #include <atlstr.h>
 #include <time.h>
 #include <wininet.h>
+#include <initguid.h>
 #include "bho.h"
 
 
@@ -33,7 +34,15 @@ void SetCookie(int delta_days) {
   ATL::CString cookie_data;
   cookie_data.Format(L"id = OPT_OUT; expires = %s", date_buffer);
 
-  InternetSetCookie(L"http://doubleclick.net", NULL, cookie_data);
+  // Include a P3P CP so the cookie isn't blocked by Internet Explorers
+  // default settings. By default, third-party cookies that specify any P3P
+  // CP will be accepted.
+  InternetSetCookieEx(
+      L"http://doubleclick.net",
+      NULL,
+      cookie_data,
+      INTERNET_COOKIE_EVALUATE_P3P,
+      (DWORD_PTR)(LPCSTR)"CP=\"This is not a P3P policy\"");
 }
 
 
